@@ -46,7 +46,7 @@
                   {% for productOrder in panier %}
                     <tr>
                       <th scope="row">{{ productOrder.product.id }}</th>
-                      <td><img src="{{ productOrder.product.picture }}" class ="img-array w-50"></td>
+                      <td><img src="{{ asset('images/uploads/products/' ~ productOrder.product.picture) }}" class ="img-array w-50"></td>
                       <td>{{ productOrder.product.name }}</td>
                       <td>{{ productOrder.quantity }}</td>
                       <td>{{ productOrder.product.price }}€</td>

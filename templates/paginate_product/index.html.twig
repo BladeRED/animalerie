@@ -12,14 +12,14 @@
                 ></a>
             <a href="{{ path('paginate_product', {'currentPage': 1, 'nbResults': 2}) }}">Afficher 2 produits par pages</a>
             <a href="{{ path('paginate_product', {'currentPage': 1, 'nbResults': 4}) }}">Afficher 4 produits par pages</a>
-            {{ form(form) }}
+            
         </div>
 
         <div class="row mt-5 d-flex justify-content-center">
 
     {% for product in products %}
         <div class="card mx-auto" style="width: 15rem;">
-            <img class="card-img-top" src="{{ product.picture }}"  alt="...">
+            <img class="card-img-top" src="{{ asset('images/uploads/products/' ~ product.picture)}}" style ="width: 250px;height: 250px" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{ product.name }}</h5>
                 <h6 class="card-title">{{ product.price }}</h6>

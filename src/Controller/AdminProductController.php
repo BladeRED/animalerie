@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/admin/product')]
 class AdminProductController extends AbstractController
@@ -23,13 +24,28 @@ class AdminProductController extends AbstractController
     }
 
     #[Route('/new', name: 'admin_product_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $pictureProduct = $form->get('picture')->getData();
+            $originalFileName = pathinfo($pictureProduct->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFileName= $slugger->slug($originalFileName);
+
+            $newFileName = $safeFileName.'-'.uniqid().'.'.$pictureProduct->guessExtension();
+
+            $pictureProduct->move(
+
+                $this->getParameter('product_picture'),
+                $newFileName
+            );
+
+            $product->setPicture($newFileName);
+
             $entityManager->persist($product);
             $entityManager->flush();
 
