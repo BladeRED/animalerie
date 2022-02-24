@@ -1,0 +1,41 @@
+{% extends 'otherpages.html.twig' %}
+
+{% block title %}Recherche de produits !{% endblock %}
+
+{% block body %}
+
+        <div class="container">
+
+            <div class="row mt-5 d-flex justify-content-center">
+                <h2 class = "text-center my-3">Recherche produits</h2>
+                {{ form_start(form) }}
+                {{ form_end(form) }}
+            </div>
+
+            <div class="row mt-5 m-3">
+                <h2 class = "text-center my-3">Résultats de la recherche</h2>
+
+                <span> {{ products|length }} produits trouvés en {{ timeLoad }} ms !</span>
+
+
+                {% if (products|length == 0) %}
+                <div class="text-danger">Aucun produit à afficher.</div>
+                {% endif %}
+
+                {% for product in products %}
+                <div class="card mx-auto" style="width: 15rem;">
+                    <img class="card-img-top" src="{{ product.picture }}"  alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <h6 class="card-title">{{ product.price }}</h6>
+                        <p class="card-text">{{ product.description|u.truncate(50, '...') }}</p>
+                        <a href="{{ path('detail_product', {'id':product.id })}}" class="btn btn-primary">En savoir plus sur ton cul</a>
+                        <a href="{{ path('panier_add', {'id':product.id })}}" class="btn btn-success mt-3">Ajouter au paniasse</a>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'otherpages.html.twig' %}
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+{{ include('parts/head.html.twig') }}
+
+
+  <body class ="customscrollbar">
+
+
+  {{ include('parts/header.html.twig') }}
+
+      <!--Ici mon panier -->
+    <section>
+
+      <div class ="mt-3 ms-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb ">
+              <li class="breadcrumb-item"><a href="{{path('homepage')}}">Revenir à l'accueil</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Panier</li>
+            </ol>
+          </nav>
+        </div>
+      <div class="container shadow-lg rounded my-4">
+          <div class ="row">
+
+            <div class="col-lg-12 justify-content-around">
+              <div class =" overflow-auto cart">
+              <h1 class ="text-center productdescribe"> Votre panier </h1>
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Image du Produit</th>
+                    <th>Nom</th>
+                    <th>Quantité</th>
+                    <th>Prix Unitaire</th>
+                    <th>Prix Total</th>
+                    <th>Actions</th>
+
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for productOrder in panier %}
+                    <tr>
+                      <th scope="row">{{ productOrder.product.id }}</th>
+                      <td><img src="{{ productOrder.product.picture }}" class ="img-array w-50"></td>
+                      <td>{{ productOrder.product.name }}</td>
+                      <td>{{ productOrder.quantity }}</td>
+                      <td>{{ productOrder.product.price }}€</td>
+                      <td>{{ productOrder.product.price * productOrder.quantity }}€</td>
+                      <td><a href="{{ path('panier_remove_panier', {'id': productOrder.product.id}) }}" > ❌</a>
+                        <a href="{{ path('panier_addOrRemoveOne', {'id': productOrder.product.id, 'operator': 'plus'}) }}" > ➕</a>
+                        <a href="{{ path('panier_addOrRemoveOne', {'id': productOrder.product.id, 'operator': 'minus'}) }}" > ➖</a></td>
+                    </tr>
+                  {% else %}
+                    <tr>
+                      <td colspan="7" class = "text-center fw-bold">Votre panier est vide</td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                <a href ="#" class="btn btn-primary btn-lg pink mx-auto my-4 d-flex justify-content-center w-25 "
+                >
+                  Valider
+                </a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    {{ include('parts/footer.html.twig') }}
+
+  </body>
+</html>
+
+{% endblock %}

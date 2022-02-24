@@ -1,0 +1,165 @@
+{% extends 'otherpages.html.twig' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="fr">
+{% include 'parts/head.html.twig' %}
+
+<body class ="customscrollbar"></body>
+
+<header>
+
+</header>
+
+<section>
+    <!--BREADCRUMB-->
+    <div class ="mt-3 ms-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb ">
+                <li class="breadcrumb-item active" aria-current="page"><a href ="{{ path('homepage') }}" class = "bluer">>Retour à l'accueil</a></li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container shadow-lg rounded my-4 login">
+        <div class="row">
+            <div class ="justify-content-center"><img
+                        src="images/logochat.png"
+                        alt="logo"
+                        class="rounded mx-auto d-block"
+                />
+                <h2 class ="text-center">Bienvenue</h2>
+                <form method="post" action="{{ path('login2') }}" class="mx-5">
+
+                    <div class="form-group my-3 mx-5 px-5">
+                        <div class ="mb-4"><h4 class ="fw-bold">Déjà enregistré?</h4>
+                            <h6>Saisissez vos informations de connexions</h6></div>
+                        <label for="exampleInputEmail1" >Adresse Email: </label>
+                        <input
+                                type="email"
+                                name="login"
+                                class="form-control log mx-auto"
+                                id="exampleInputEmail1"
+                                aria-describedby="emailHelp"
+                                placeholder="Enter email"
+                        />
+                    </div>
+                    <div class="form-group mt-3 mb-4 mx-5 px-5">
+                        <label for="exampleInputPassword1" >Mot de passe: </label>
+                        <input
+                                type="password"
+                                name ="password"
+                                class="form-control log mx-auto "
+                                id="exampleInputPassword1"
+                                placeholder="Password"
+                        />
+                    </div>
+                    <button
+                            type="submit"
+                            class="btn btn-primary btn-lg pink mx-auto mt-5 mb-2 px-5 d-flex justify-content-center "
+                    >
+                        Valider
+                    </button>
+
+                </form>
+
+                <div class ="my-5 mx-5 px-5">
+                    <a href ="#" class = "bluer">> Mot de passe oublié?</a>
+                    <h6 class ="fw-bold mt-3 mb-2">Vous n'avez pas encore de compte?</h6>
+                    <button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="nobutton"><a class = "bluer"> Inscrivez-vous !</a></button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Inscription</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Non,ça ira!"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class = "mx-5">
+                                        <div class="form-group my-3 mx-5 px-5">
+
+                                            <label for="exampleInputGenre">Votre civilité </label>
+                                            <select name="civilite" id="civilite">
+                                                <option value="">Madame</option>
+                                                <option value="dog">Monsieur</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group my-3 mx-5 px-5">
+
+                                            <label for="exampleInputName">Votre nom de famille et votre prénom </label>
+                                            <input
+                                                    type="text"
+                                                    class="form-control log mx-auto"
+                                                    id="exampleInputName"
+                                                    aria-describedby="namelHelp"
+                                                    placeholder="Roy Poulet"
+                                            />
+                                        </div>
+
+                                        <div class="form-group my-3 mx-5 px-5">
+
+                                            <label for="exampleInputDate">Date de naissance: </label>
+                                            <input
+                                                    type="date"
+                                                    class="form-control log mx-auto"
+                                                    id="exampleInputDate"
+                                                    aria-describedby="dateHelp"
+                                                    placeholder="15 Mai 2020"
+                                            />
+                                        </div>
+
+                                        <div class="form-group my-3 mx-5 px-5">
+
+                                            <label for="exampleInputEmail1">Saisissez une adresse mail valide: </label>
+                                            <input
+                                                    type="email"
+                                                    class="form-control log mx-auto"
+                                                    id="exampleInputEmail1"
+                                                    aria-describedby="emailHelp"
+                                                    placeholder="Votre mail"
+                                            />
+                                        </div>
+
+                                        <div class="form-group mt-3 mb-4 mx-5 px-5">
+                                            <label for="exampleInputPassword1">Mot de passe :</label>
+                                            <input
+                                                    type="password"
+                                                    class="form-control log mx-auto "
+                                                    id="exampleInputPassword1"
+                                                    placeholder=" MotdePasseIdéal43!"
+                                            />
+                                            <p class = "mini">Votre mot de passe doit contenir au moins un chiffre, une majuscule et un caractère spécial (ex: ?,!:)</p>
+                                        </div>
+                                        <div class="mt-3 mb-4 mx-5 px-5 form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <label class="form-check-label" for="exampleCheck1">En cochant cette case, vous acceptez nos CGV et nos mntions légales.</label>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="modal-footer justify-content-around">
+                                    <button type="button" class="btn btn pink text-white" data-bs-dismiss="modal">Non merci, ça ira !</button>
+                                    <button type="button" class="btn btn pink text-white">Je m'inscris !</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Button trigger modal -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="shadow-lg">
+
+</footer>
+
+<!--SCRIPT JS A LANCER EN FIN DU CODE-->
+<script src="script.js"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>
+{% endblock %}

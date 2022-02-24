@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur la Nîmes'alerie!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Hello connard! ✅</h1>
+    <div class="container">
+        <a href="{{ path('default') }}" class ="btn btn-success btn-lg">Retour</a>
+        <div class="row mt-3">
+
+                <div class="card" style="width: 15rem;">
+                    <img class="card-img-top" src="{{ product.picture }}"  alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <h6 class="card-title">{{ product.price }}</h6>
+                        <p class="card-text">{{ product.description|u.truncate(50, '...') }}</p>
+                        <a href="#" class="btn btn-primary">En savoir plus sur ton cul</a>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+    </div>
+{% endblock %}

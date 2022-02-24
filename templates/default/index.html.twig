@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur la Nîmes'alerie!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello connard! ✅</h1>
+<div class="container">
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{ asset('images/categ1.jpg') }}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ asset('images/categ2.jpg') }}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ asset('images/categ5.jpg') }}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+    <div class="row mt-3">
+        {% for product in products %}
+            {% dump(product) %}
+            <div class="card" style="width: 15rem;">
+                <img class="card-img-top" src="{{ product.picture }}"  alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <h6 class="card-title">{{ product.price }}</h6>
+                    <p class="card-text">{{ product.description|u.truncate(50, '...') }}</p>
+                    <a href="{{ path('detail_product', {'id':product.id })}}" class="btn btn-primary">En savoir plus sur ton cul</a>
+                    <a href="{{ path('panier_add', {'id':product.id })}}" class="btn btn-success mt-3">Ajouter au paniasse</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
