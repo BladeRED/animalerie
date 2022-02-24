@@ -1,4 +1,25 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-success mt-4">{{ button_label|default('Save') }}</button>
+
+{{ form_row(form.name) }}
+{{ form_row(form.description) }}
+
+{% if product is defined %}
+
+    <div class="border-1">
+        <span>Image actuelle !</span>
+
+        <img src="{{ asset('images/uploads/products/'~ product.picture) }}">
+    </div>
+
+
+    <label>Changez l'image seulement si l'actuelle ne va pas ...</label>
+    {{ form_row(form.picture, {'required': false}) }}
+{% else %}
+
+    {{ form_row(form.picture, {'required': true}) }}
+
+{% endif %}
+
+
+<button class="btn btn-success mt-4">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

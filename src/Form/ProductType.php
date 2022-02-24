@@ -50,7 +50,7 @@ class ProductType extends AbstractType
 
                 ],
                 'expanded'=> true,
-                'multiple' => true,
+                'multiple' => false,
                 'attr' => ['class' => 'form_control m-3 w-50']])
             ->add('id_category', EntityType::class,[
 
