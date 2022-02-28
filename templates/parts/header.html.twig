@@ -38,6 +38,17 @@
               <div>
                 <div class="row">
                   <div class="col-lg-6 col-sm-6 text-center cartlog">
+
+                    {% if app.user and app.user.hasRole('ROLE_ADMIN') %}
+                      <a href="{{path('admin')}}">
+                        <img
+                                src="{{ asset("images/admin_access.png") }}"
+                                alt="Accès ADMIN"
+                                class="img-fluid rounded mx-auto my-1 d-block"
+                        />
+                        <p>Accès ADMIN</p>
+                      </a>
+                    {% else %}
                     <a href="{{path('panier_displayPanier')}}">
                       <img
                         src="{{ asset("images/panier.png") }}"
@@ -46,18 +57,34 @@
                       />
                       <p>Mon Panier</p>
                     </a>
+                    {% endif %}
                   </div>
 
                   <div class="col-lg-6 col-sm-6 text-center cartlog">
+                    {% if app.user %}
 
-                    <a href="{{ path('login2')}}">
-                        <img
-                          src="{{ asset("images/account_access.png") }}"
-                          alt="Connexion"
-                          class="img-fluid rounded mx-auto my-1 d-block"
-                        />
-                        <p>Connexion</p>'
+                    <a href="{{ path('app_logout')}}">
+                      <img
+                              src="{{ asset("images/account_access_logged.png") }}"
+                              alt="Déconnexion"
+                              class="img-fluid rounded mx-auto my-1 d-block"
+                      />
+                      <p/> Bonjour {{ app.user.email }}</p>
                     </a>
+                    {% else %}
+
+                    <a href="{{ path('app_login')}}">
+                      <img
+                              src="{{ asset("images/account_access.png") }}"
+                              alt="Connexion"
+                              class="img-fluid rounded mx-auto my-1 d-block"
+                      />
+
+                    <p/> Connexion </p>
+                    </a>
+                      {% endif %}
+
+
                   </div>
                 </div>
               </div>
