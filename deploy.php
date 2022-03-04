@@ -24,7 +24,7 @@ host('51.178.42.85')
     ->set('branch', 'main')
     ->setForwardAgent(true)
     ->set('remote_user', 'debian')
-    ->set('deploy_path', '/var/www/La_Patate_De_Patrick');
+    ->set('deploy_path', '/var/www/animalerie');
 
 // Tasks
 
