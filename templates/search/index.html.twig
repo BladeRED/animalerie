@@ -4,38 +4,50 @@
 
 {% block body %}
 
-        <div class="container">
+        <div class="container shadow-lg rounded d-flex justify-content-center">
 
-            <div class="row mt-5 d-flex justify-content-center">
+            <div class="row my-5 d-flex justify-content-center">
                 <h2 class = "text-center my-3">Recherche produits</h2>
                 {{ form_start(form) }}
+                <div class="align-self-start">
+                    {{ form_label(form.searchBar, 'Barre de recherche', {
+                        'label_attr': {'class': 'd-flex'}
+                    }) }}
+                    {{ form_widget(form.searchBar, {'attr': {'class': 'd-flex'}}) }}
+                </div>
                 {{ form_end(form) }}
             </div>
 
-            <div class="row mt-5 m-3">
+        </div>
+
+
                 <h2 class = "text-center my-3">Résultats de la recherche</h2>
 
-                <span> {{ products|length }} produits trouvés en {{ timeLoad }} ms !</span>
+                <span> {{ products|length }} produits trouvés en {{ timeLoad }}ms !</span>
 
 
                 {% if (products|length == 0) %}
                 <div class="text-danger">Aucun produit à afficher.</div>
                 {% endif %}
-
+    <div class="container mt-5 m-3 d-flex justify-content-center">
+                <div class="row d-flex justify-content-center">
                 {% for product in products %}
-                <div class="card mx-auto" style="width: 15rem;">
-                    <img class="card-img-top" src="{{ asset('images/uploads/products/' ~ product.picture)}}" style ="width: 250px;height: 250px" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <h6 class="card-title">{{ product.price }}</h6>
-                        <p class="card-text">{{ product.description|u.truncate(50, '...') }}</p>
-                        <a href="{{ path('detail_product', {'id':product.id })}}" class="btn btn-primary">En savoir plus sur ton cul</a>
-                        <a href="{{ path('panier_add', {'id':product.id })}}" class="btn btn-success mt-3">Ajouter au paniasse</a>
+                    <div class = "col-lg-3">
+                    <div class="card my-2 mx-2" style="width: 18rem;">
+                        <img class="card-img-top align-self-center" src="{{ asset('images/uploads/products/' ~ product.picture)}}" style ="width: 200px;height: 200px" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <h6 class="card-title">{{ product.price }}</h6>
+                            <p class="card-text">{{ product.description|u.truncate(50, '...') }}</p>
+                            <a href="{{ path('detail_product', {'id':product.id })}}" class="btn btn-primary d-flex justify-content-center mx-5">En savoir plus</a>
+                            <a href="{{ path('panier_add', {'id':product.id })}}" class="btn btn-success mt-3 d-flex justify-content-center mx-5">Ajouter au panier</a>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    </div>
+
+
 
             {% endfor %}
-        </div>
-        </div>
+                </div>
+    </div>
 {% endblock %}

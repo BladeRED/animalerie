@@ -19,41 +19,45 @@ class SearchType extends AbstractType
         $builder
             ->add('searchBar', TextType::class, [
                 'required'=> false,
-                'attr'=> ['class' => 'form_control m-3 w-50'] ])
+                'label' => 'Barre de recherche',
+                 ])
             ->add('Category', EntityType::class,[
 
                 'required'=>false,
                 'class'=> Category::class,
-                'attr' => ['class' => 'form_control m-4 w-50']])
+                'label' => 'Catégorie',
+                'attr' => ['class' => 'form_control mb-4 w-25 d-flex']])
             ->add('nbStars', ChoiceType::class, [
 
                 'choices' => [
 
-                    '1 étoile' => 1,
-                    '2 étoiles' => 2,
-                    '3 étoiles' => 3,
-                    '4 étoiles' => 4,
-                    '5 étoiles' => 5
+                    '⭐' => 1,
+                    '⭐⭐' => 2,
+                    '⭐⭐⭐' => 3,
+                    '⭐⭐⭐⭐' => 4,
+                    '⭐⭐⭐⭐⭐' => 5
 
                 ],
                 'expanded'=> true,
+                'label' => 'Nombre d\'étoiles',
                 'multiple' => true,
-                'attr' => ['class' => 'form_control m-3 w-50']
+                'attr' => ['class' => 'form_control my-4 mx-3 px-5 w-100 d-flex flex-column']
             ])
             ->add('prixMin', NumberType::class, [
 
                 'required'=> false,
-                'attr'=> ['class' => 'form_control m-3 w-50']
+                'attr'=> ['class' => 'form_control m-3 w-25 align-self-center']
 
             ])
             ->add('prixMax', NumberType::class, [
                 'required'=> false,
-                'attr'=> ['class' => 'form_control m-3 w-50']
+                'attr'=> ['class' => 'form_control m-3 w-25']
 
             ])
             ->add('save', SubmitType::class, [
 
-                'attr'=> ['class' => 'btn btn-success btn-lg mt-5']
+                'attr'=> ['class' => 'btn btn-success btn-lg mt-5 text-center mx-auto d-flex justify-content-center'],
+                'label' => 'Lancer la recherche'
 
             ]);
 

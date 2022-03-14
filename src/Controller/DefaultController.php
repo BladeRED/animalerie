@@ -48,6 +48,14 @@ $this->productRepository = $productRepository;
         ]);
     }
 
+    #[Route('compteclient', name: 'compteclient')]
+    public function displaycompteclient(): Response
+    {
+        return $this->render('default/compteclient.html.twig', [
+            'controller_name' => 'DefaultController',
+        ]);
+    }
+
     #[Route('mentionslegales', name: 'mentionslegales')]
     public function displayMentions(): Response
     {

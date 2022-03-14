@@ -3,17 +3,23 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1 class="text-center my-5">Register</h1>
+    <h1 class="text-center mt-3 my-5">Inscrivez-vous !</h1>
 
-    <div class="container">
+    <div class="container  shadow-lg rounded d-flex justify-content-center">
     {{ form_start(registrationForm) }}
 
-
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.birthdate) }}
-
-        <button type="submit" class="btn btn-success btn-lg mt-5">S'inscrire</button>
+        <div class="d-flex justify-content-center align-items-center flex-column">
+            <div class="align-self-start">
+            {{ form_label(registrationForm.email) }}
+            {{ form_widget(registrationForm.email) }}
+            </div>
+            {{ form_widget(registrationForm.plainPassword) }}
+            <div class="align-self-start">
+            {{ form_label(registrationForm.birthdate) }}
+            {{ form_widget(registrationForm.birthdate) }}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success btn-lg mt-5 text-center mx-auto d-flex justify-content-center">S'inscrire</button>
 
     {{ form_end(registrationForm) }}
     </div>
