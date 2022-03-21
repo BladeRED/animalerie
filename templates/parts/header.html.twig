@@ -19,11 +19,12 @@
             </div>
 
             <div class="col-lg-5 col-md-6 col-sm-8 px-5 my-auto">
-              <form onclick="return false;" class="px-5 mx-auto">
+              <form onclick="{{ path('search') }}" class="px-5 mx-auto">
                 <div class="btn-group w-100">
+                  <label for="searchBar"></label>
                   <input
                     type="text"
-                    name="name"
+                    name="searchBar"
                     class="form-control px-5 w-100"
                     required="required"
                   />
@@ -69,7 +70,7 @@
                               alt="Déconnexion"
                               class="img-fluid rounded mx-auto my-1 d-block"
                       />
-                      <p/> Bonjour {{ app.user.email }}</p>
+                      <p> Bonjour {{ app.user.firstName }} </p>
                     </a>
                     {% else %}
 
@@ -80,7 +81,7 @@
                               class="img-fluid rounded mx-auto my-1 d-block"
                       />
 
-                    <p/> Connexion </p>
+                    <p> Connexion </p>
                     </a>
                       {% endif %}
 
@@ -129,7 +130,7 @@
 
                 <li class="nav-item dropdown">
                   <a
-                    class="nav-link dropdown-toggle text-white"
+                    class="nav-link dropdown-toggle text-white blue"
                     href="#"
                     id="navbarDropdown1"
                     role="button"
@@ -140,22 +141,22 @@
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                     <li>
-                      <a class="dropdown-item line" href="#"
+                      <a class="dropdown-item line blue" href="#"
                         >Alimentation pour Chiens</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item line" href="#"
+                      <a class="dropdown-item line blue" href="#"
                         >Accessoires pour Chiens</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item line" href="#"
+                      <a class="dropdown-item line blue" href="#"
                         >Hygiène et soins</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item line" href="#">Transport</a>
+                      <a class="dropdown-item line blue" href="#">Transport</a>
                     </li>
                     <li>
                       <hr class="dropdown-divider" />
@@ -165,7 +166,7 @@
 
                 <li class="nav-item dropdown">
                   <a
-                    class="nav-link dropdown-toggle text-white"
+                    class="nav-link dropdown-toggle text-white blue"
                     href="#"
                     id="navbarDropdown2"
                     role="button"
@@ -176,22 +177,22 @@
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
                     <li>
-                      <a class="dropdown-item line" href="categorie.php"
+                      <a class="dropdown-item line blue" href="{{ "categorie.html.twig"}}"
                         >Alimentation pour Chats</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item line" href="#"
+                      <a class="dropdown-item line blue" href="#"
                         >Accessoires pour Chats</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item line" href="#"
+                      <a class="dropdown-item line blue" href="#"
                         >Hygiène et soins</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item line" href="#">Transport</a>
+                      <a class="dropdown-item line blue" href="#">Transport</a>
                     </li>
                     <li>
                       <hr class="dropdown-divider" />
@@ -201,20 +202,20 @@
 
                 <li class="nav-item dropdown">
                   <a
-                    class="nav-link dropdown-toggle text-white"
-                    href="#"
-                    id="navbarDropdown3"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
+                          class="nav-link dropdown-toggle text-white blue"
+                          href="#"
+                          id="navbarDropdown3"
+                          role="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
                   >
                     Autres Animaux <i class="fas fa-dove"></i>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                    <li><a class="dropdown-item line" href="#">Rongeurs</a></li>
-                    <li><a class="dropdown-item line" href="#">Reptiles</a></li>
-                    <li><a class="dropdown-item line" href="#">Poissons</a></li>
-                    <li><a class="dropdown-item line" href="404.php">Autres</a></li>
+                    <li><a class="dropdown-item line blue" href="#">Rongeurs</a></li>
+                    <li><a class="dropdown-item line blue" href="#">Reptiles</a></li>
+                    <li><a class="dropdown-item line blue" href="#">Poissons</a></li>
+                    <li><a class="dropdown-item line blue" href="{{ '404.html.twig' }}">Autres</a></li>
                     <li>
                       <hr class="dropdown-divider" />
                     </li>
@@ -234,15 +235,15 @@
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
                     <li>
-                      <a class="dropdown-item line" href="#"
+                      <a class="dropdown-item line blue" href="#"
                         >DogX, envoyez votre animal dans l'espace !</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item line" href="#">Toilettage</a>
+                      <a class="dropdown-item line blue" href="#">Toilettage</a>
                     </li>
                     <li>
-                      <a class="dropdown-item line" href="#"
+                      <a class="dropdown-item line blue" href="#"
                         >Livraisons d'animaux</a
                       >
                     </li>
@@ -265,12 +266,12 @@
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown5">
                     <li>
-                      <a class="dropdown-item line" href="#"
+                      <a class="dropdown-item line blue" href="#"
                         >Promotions du moment</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item line" href="#">Top marques</a>
+                      <a class="dropdown-item line blue" href="#">Top marques</a>
                     </li>
                     <li>
                       <hr class="dropdown-divider" />
@@ -282,4 +283,5 @@
           </div>
         </nav>
       </div>
+
     </header>

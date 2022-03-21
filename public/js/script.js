@@ -1,5 +1,4 @@
 
-
     // SMOOTH SLIDE DROPDOWN-MENU 
 
     $('.dropdown-menu').addClass('invisible'); //FIRST TIME INVISIBLE
@@ -10,15 +9,13 @@
     $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
   });
 
-  // ADD SLIDEUP ANIMATION TO DROPDOWN-MENU 
-  $('.dropdown').on('hide.bs.dropdown', function(e){
-    $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
-  });
-
-
-// Pop up
-function myFunction() {
-  var popup = document.getElementById("myPopup");
-  popup.classList.toggle("show");
-}
+    // ADD SLIDEUP ANIMATION TO DROPDOWN-MENU
+    $('.dropdown').on('hide.bs.dropdown', function(e){
+      $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
+    });
+    // Pop up
+    function myFunction() {
+      var popup = document.getElementById("myPopup");
+      popup.classList.toggle("show");
+    }
 

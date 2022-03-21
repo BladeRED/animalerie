@@ -23,7 +23,10 @@ $this->productRepository = $productRepository;
     #[Route('/', name: 'homepage')]
     public function displayHomePage(): Response
     {
+
+        $products = $this->productRepository->findAll();
         return $this->render('default/homepage.html.twig', [
+            'products' => $products,
             'controller_name' => 'DefaultController',
         ]);
     }
@@ -37,6 +40,14 @@ $this->productRepository = $productRepository;
 
         return $this->render('default/index.html.twig', [
             'products' => $products,
+        ]);
+    }
+
+    #[Route('/produit', name: 'produit')]
+    public function displayProduit(): Response
+    {
+        return $this->render('default/produit.html.twig', [
+            'controller_name' => 'DefaultController',
         ]);
     }
 
@@ -66,7 +77,7 @@ $this->productRepository = $productRepository;
     #[Route('product/{id}', name:'detail_product')]
     public function getOne(Product $product){
 
-        return $this->render('default/product.html.twig', ['product' =>$product]);
+        return $this->render('default/produit.html.twig', ['product' =>$product]);
 
     }
 }

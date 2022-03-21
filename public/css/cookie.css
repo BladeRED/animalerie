@@ -1,20 +1,39 @@
+body {
+    background-color: #17415e;
 
-                      body{
-
-                      }
-.bg-custom{
-    background-color:#130f40;
 }
-.button-fixed{
-    bottom: 0;
+
+.cookie{
+
+    z-index: 999999;
+
+}
+
+.cookie-consent {
     position: fixed;
-    right: 0;
-    border-radius: 4px;
-}
-.fas{
-    cursor: pointer;
-    font-size: 24px;
-}
-p{
+    bottom: 800px;
+    left: 2px;
+    width: 260px;
+    padding-top: 7px;
+    height: 83px;
+    color: #17415e;
+    line-height: 20px;
+    padding-left: 100px;
+    padding-right: 10px;
     font-size: 14px;
+    background: #292929;
+    z-index: 2000;
+    cursor: pointer;
+    border-radius: 3px
+}
+
+.allow-button {
+    height: 20px;
+    width: 104px;
+    color: #17415e;
+    font-size: 12px;
+    line-height: 10px;
+    border-radius: 3px;
+    border: 1px solid green;
+    background-color: green
 }
