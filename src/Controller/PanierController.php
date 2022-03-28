@@ -26,23 +26,22 @@ class PanierController extends AbstractController
 
     }
 
-    #[Route('/{id}', name: 'add', requirements: ['id' => '\d+' ])]
+    #[Route('/{id}', name: 'add', requirements: ['id' => '\d+'])]
     public function addPanier(Product $product, Request $request): Response
     {
 
-        $products = $this->productRepository->findAll();
-        $categories = $this->categoryRepository->findAll();
+
         $productOrder = new ProductOrder();
         $productOrder->setProduct($product);
         $productOrder->setQuantity(1);
 
-        $session =$request->getSession();
+        $session = $request->getSession();
 
         // tableau vide qui représente panier //
-        $panier =[];
+        $panier = [];
 
         // si j'ai déjà un panier en session, alors je le récupère //
-        if($session->has("panier")){
+        if ($session->has("panier")) {
 
             $panier = $session->get("panier");
 
@@ -51,14 +50,14 @@ class PanierController extends AbstractController
         $exist = false;
 
         // Vérifie si on a déjà ce produit dans le panier
-        foreach ($panier as $productOrderElem){
-            if($productOrderElem->getProduct()->getId() == $product->getId()){
+        foreach ($panier as $productOrderElem) {
+            if ($productOrderElem->getProduct()->getId() == $product->getId()) {
                 $exist = true;
                 $productOrderElem->setQuantity($productOrderElem->getQuantity() + 1);
             }
         }
 
-        if(!$exist){
+        if (!$exist) {
 
             $panier[] = $productOrder;
         }
@@ -69,16 +68,16 @@ class PanierController extends AbstractController
     }
 
     #[Route('/remove-panier/{id}', name: 'remove_panier')]
-    public function removePanier(Product $product, Request $request){
+    public function removePanier(Product $product, Request $request)
+    {
 
-        $products = $this->productRepository->findAll();
-        $categories = $this->categoryRepository->findAll();
+
         $session = $request->getSession();
         $panier = $session->get('panier');
 
         $delete = null;
-        foreach ($panier as $key=>$productOrder){
-            if($product->getId() == $productOrder->getProduct()->getId()){
+        foreach ($panier as $key => $productOrder) {
+            if ($product->getId() == $productOrder->getProduct()->getId()) {
                 $delete = $key;
             }
         }
@@ -92,19 +91,19 @@ class PanierController extends AbstractController
     }
 
     #[Route('/{operator}/{id}', 'addOrRemoveOne')]
-    public function incrementPanierProduct(Product $product, Request $request, $operator){
+    public function incrementPanierProduct(Product $product, Request $request, $operator)
+    {
 
-        $products = $this->productRepository->findAll();
-        $categories = $this->categoryRepository->findAll();
+
         $session = $request->getSession();
         $panier = $session->get('panier');
 
-        foreach ($panier as $orderProduct){
-            if($orderProduct->getProduct()->getId() == $product->getId()){
-                if($operator == 'plus'){
-                    $orderProduct->setQuantity($orderProduct->getQuantity()+1);
-                } elseif ($operator == 'minus'){
-                    $orderProduct->setQuantity($orderProduct->getQuantity()-1);
+        foreach ($panier as $orderProduct) {
+            if ($orderProduct->getProduct()->getId() == $product->getId()) {
+                if ($operator == 'plus') {
+                    $orderProduct->setQuantity($orderProduct->getQuantity() + 1);
+                } elseif ($operator == 'minus') {
+                    $orderProduct->setQuantity($orderProduct->getQuantity() - 1);
                 }
 
             }
@@ -119,14 +118,22 @@ class PanierController extends AbstractController
     #[Route('/', name: 'displayPanier')]
     public function index(Request $request): Response
     {
-        $products = $this->productRepository->findAll();
+
+        $price = 0;
         $categories = $this->categoryRepository->findAll();
-        $panier= $request->getSession()->get("panier");
+        $panier = $request->getSession()->get("panier");
+
+        foreach ($panier as $po){
+
+            $price += (($po->getProduct()->getPrice()*$po->getQuantity()));
+
+        }
 
 
         return $this->render('panier/index.html.twig', [
             'categories' => $categories,
             'panier' => $panier,
+            'prix' =>$price,
         ]);
     }
 }
