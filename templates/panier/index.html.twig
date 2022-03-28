@@ -10,7 +10,7 @@
   <body class ="customscrollbar">
 
 
-  {{ include('parts/header.html.twig') }}
+  {{ include('navbar/header.html.twig') }}
 
       <!--Ici mon panier -->
     <section>
@@ -62,7 +62,7 @@
                   {% endfor %}
                   </tbody>
                 </table>
-                <a href ="#" class="btn btn-primary btn-lg pink mx-auto my-4 d-flex justify-content-center w-25 "
+                <a href ="{{ path('paiement') }}" class="btn btn-primary btn-lg pink mx-auto my-4 d-flex justify-content-center w-25 "
                 >
                   Valider
                 </a>

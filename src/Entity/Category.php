@@ -27,6 +27,9 @@ class Category
     #[ORM\OneToMany(mappedBy: 'id_category', targetEntity: Product::class)]
     private $products;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $icon;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -124,5 +127,17 @@ class Category
 
     public function __toString(){
         return $this->name;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
     }
 }

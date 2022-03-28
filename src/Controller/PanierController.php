@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Entity\ProductOrder;
 use App\Entity\Produit;
+use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,9 +15,23 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/panier', name: 'panier_')]
 class PanierController extends AbstractController
 {
+    private $productRepository;
+    private $categoryRepository;
+
+    public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository)
+    {
+
+        $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
+
+    }
+
     #[Route('/{id}', name: 'add', requirements: ['id' => '\d+' ])]
     public function addPanier(Product $product, Request $request): Response
     {
+
+        $products = $this->productRepository->findAll();
+        $categories = $this->categoryRepository->findAll();
         $productOrder = new ProductOrder();
         $productOrder->setProduct($product);
         $productOrder->setQuantity(1);
@@ -54,6 +70,9 @@ class PanierController extends AbstractController
 
     #[Route('/remove-panier/{id}', name: 'remove_panier')]
     public function removePanier(Product $product, Request $request){
+
+        $products = $this->productRepository->findAll();
+        $categories = $this->categoryRepository->findAll();
         $session = $request->getSession();
         $panier = $session->get('panier');
 
@@ -74,6 +93,9 @@ class PanierController extends AbstractController
 
     #[Route('/{operator}/{id}', 'addOrRemoveOne')]
     public function incrementPanierProduct(Product $product, Request $request, $operator){
+
+        $products = $this->productRepository->findAll();
+        $categories = $this->categoryRepository->findAll();
         $session = $request->getSession();
         $panier = $session->get('panier');
 
@@ -97,11 +119,13 @@ class PanierController extends AbstractController
     #[Route('/', name: 'displayPanier')]
     public function index(Request $request): Response
     {
-
+        $products = $this->productRepository->findAll();
+        $categories = $this->categoryRepository->findAll();
         $panier= $request->getSession()->get("panier");
 
 
         return $this->render('panier/index.html.twig', [
+            'categories' => $categories,
             'panier' => $panier,
         ]);
     }

@@ -1,0 +1,172 @@
+<header>
+    <!--Ici mon header-->
+    <section>
+        <!--Mettre une image de fond en background centré sous la barre de recherche-->
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-md-2 col-sm-4">
+                    <div class="ps-3">
+                        <img
+                                src="{{ asset("images/logochat.png") }}"
+                                alt="logo"
+                                class="img-fluid rounded mx-auto d-block"
+                        />
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-md-6 col-sm-8 px-5 my-auto">
+                    <form onclick="{{ path('search') }}" class="px-5 mx-auto">
+                        <div class="btn-group w-100">
+                            <label for="searchBar"></label>
+                            <input
+                                    type="text"
+                                    name="searchBar"
+                                    class="form-control px-5 w-100"
+                                    required="required"
+                            />
+                            <a href="{{ path('search') }}" class="btn bg-perso2 loupe text-white"
+                            ><i class="fas fa-search"></i
+                                ></a>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6 text-center cartlog">
+
+                                {% if app.user and app.user.hasRole('ROLE_ADMIN') %}
+                                    <a href="{{ path('admin') }}">
+                                        <img
+                                                src="{{ asset("images/admin_access.png") }}"
+                                                alt="Accès ADMIN"
+                                                class="img-fluid rounded mx-auto my-1 d-block"
+                                        />
+                                        <p>Accès ADMIN</p>
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('panier_displayPanier') }}">
+                                        <img
+                                                src="{{ asset("images/panier.png") }}"
+                                                alt="Mon Panier"
+                                                class="img-fluid rounded mx-auto my-1 d-block"
+                                        />
+                                        <p>Mon Panier</p>
+                                    </a>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6 text-center cartlog">
+                                {% if app.user %}
+
+                                    <a href="{{ path('app_logout') }}">
+                                        <img
+                                                src="{{ asset("images/account_access_logged.png") }}"
+                                                alt="Déconnexion"
+                                                class="img-fluid rounded mx-auto my-1 d-block"
+                                        />
+                                        <p> Bonjour {{ app.user.firstName }} </p>
+                                    </a>
+                                {% else %}
+
+                                    <a href="{{ path('app_login') }}">
+                                        <img
+                                                src="{{ asset("images/account_access.png") }}"
+                                                alt="Connexion"
+                                                class="img-fluid rounded mx-auto my-1 d-block"
+                                        />
+
+                                        <p> Connexion </p>
+                                    </a>
+                                {% endif %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Ici mon menu navigation-->
+    <div class="container-fluid bg-perso2 bg-gradient">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav w-100 d-flex justify-content-around">
+                        <li class="nav-item">
+                            <a
+                                    class="
+                      nav-link
+                      dropdown-toggle
+                      active
+                      bg-button
+                      text-white
+                      px-5
+                    "
+                                    aria-current="page"
+                                    href="{{ path('homepage') }}"
+                            >Accueil <i class="fas fa-home"></i
+                                ></a>
+                        </li>
+                        {% for category in categories %}
+                            {% if category.idCategoryParent is null %}
+
+
+                                <li class="nav-item dropdown">
+
+
+                                    <a
+                                            class="nav-link dropdown-toggle text-white nohover"
+                                            href="{{ path('detail_categ', {'id':category.id }) }}"
+                                            id="navbarDropdown1"
+                                            role="button"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                    >
+                                        {{ category.name }} <i class="{{ category.icon }}"></i>
+                                    </a>
+
+
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+
+
+                                        <li>
+                                            {% for subcategory in categories %}
+
+
+                                                {% if subcategory.idCategoryParent is not null and subcategory.idCategoryParent.id == category.id %}
+
+                                                    <a class="dropdown-item line blue"
+                                                       href="{{ path('detail_categ', {'id':subcategory.id }) }}"
+                                                    >{{ subcategory.name }}</a
+                                                    >
+                                                {% endif %}
+                                            {% endfor %}
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+</header>

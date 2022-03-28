@@ -140,11 +140,17 @@
                     Chiens <i class="fas fa-dog"></i>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+
+                      {% for category in categories %}
+
                     <li>
-                      <a class="dropdown-item line blue" href="#"
-                        >Alimentation pour Chiens</a
+                      <a class="dropdown-item line blue" href="{{ path('detail_categ', {'id':category.id })}}"
+                        >{{ category.name }}</a
                       >
                     </li>
+
+                      {% endfor %}
+
                     <li>
                       <a class="dropdown-item line blue" href="#"
                         >Accessoires pour Chiens</a
@@ -177,7 +183,7 @@
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
                     <li>
-                      <a class="dropdown-item line blue" href="{{ "categorie.html.twig"}}"
+                      <a class="dropdown-item line blue" href=""
                         >Alimentation pour Chats</a
                       >
                     </li>
