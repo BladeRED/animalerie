@@ -37,8 +37,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $lastName;
 
-
-
     public function getId(): ?int
     {
         return $this->id;
@@ -79,7 +77,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -116,14 +114,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function hasRole($role){
+    public function hasRole($role)
+    {
 
         $exist = false;
 
-        foreach($this->roles as $RolElem){
+        foreach ($this->roles as $RolElem) {
 
-            if($RolElem == $role){
-                $exist= true;
+            if ($RolElem == $role) {
+                $exist = true;
             }
 
         }

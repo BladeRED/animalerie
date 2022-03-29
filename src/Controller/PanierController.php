@@ -123,9 +123,9 @@ class PanierController extends AbstractController
         $categories = $this->categoryRepository->findAll();
         $panier = $request->getSession()->get("panier");
 
-        foreach ($panier as $po){
+        foreach ($panier as $po) {
 
-            $price += (($po->getProduct()->getPrice()*$po->getQuantity() *1.2));
+            $price += (($po->getProduct()->getPrice() * $po->getQuantity() * 1.2));
 
         }
 
@@ -133,7 +133,7 @@ class PanierController extends AbstractController
         return $this->render('panier/index.html.twig', [
             'categories' => $categories,
             'panier' => $panier,
-            'prix' =>$price,
+            'prix' => $price,
         ]);
     }
 }
