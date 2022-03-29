@@ -43,7 +43,7 @@
             <tr>
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
-                <td>{{ product.price }}€</td>
+                <td>{{ (product.price* 1.2)|round(2,'ceil') }}€</td>
                 <td>{{ product.description }}</td>
                 <td><img src="{{ asset('images/uploads/products/' ~ product.picture)}}" style ="width: 250px;height: 250px" alt="..."></td>
                 <td>{{ product.nbStars }}</td>

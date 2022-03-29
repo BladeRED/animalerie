@@ -125,7 +125,7 @@ class PanierController extends AbstractController
 
         foreach ($panier as $po){
 
-            $price += (($po->getProduct()->getPrice()*$po->getQuantity()));
+            $price += (($po->getProduct()->getPrice()*$po->getQuantity() *1.2));
 
         }
 

@@ -49,8 +49,8 @@
                       <td><img src="{{ asset('images/uploads/products/' ~ productOrder.product.picture) }}" class ="img-array w-50"></td>
                       <td>{{ productOrder.product.name }}</td>
                       <td>{{ productOrder.quantity }}</td>
-                      <td>{{ productOrder.product.price }}€</td>
-                      <td>{{ productOrder.product.price * productOrder.quantity }}€</td>
+                      <td>{{ (productOrder.product.price* 1.2)|round(2,'ceil')}}€</td>
+                      <td>{{ (productOrder.product.price* 1.2)|round(2,'ceil') * productOrder.quantity }}€</td>
                       <td><a href="{{ path('panier_remove_panier', {'id': productOrder.product.id}) }}" > ❌</a>
                         <a href="{{ path('panier_addOrRemoveOne', {'id': productOrder.product.id, 'operator': 'plus'}) }}" > ➕</a>
                         <a href="{{ path('panier_addOrRemoveOne', {'id': productOrder.product.id, 'operator': 'minus'}) }}" > ➖</a></td>

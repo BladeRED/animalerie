@@ -37,7 +37,7 @@
                         <img class="card-img-top align-self-center" src="{{ asset('images/uploads/products/' ~ product.picture)}}" style ="width: 200px;height: 200px" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
-                            <h6 class="card-title">{{ product.price }}</h6>
+                            <h6 class="card-title">{{ {{ (product.price* 1.2)|round(2,'ceil') }} }}</h6>
                             <p class="card-text">{{ product.description|u.truncate(50, '...') }}</p>
                             <a href="{{ path('detail_product', {'id':product.id })}}" class="btn btn-primary d-flex justify-content-center mx-5">En savoir plus</a>
                             <a href="{{ path('panier_add', {'id':product.id })}}" class="btn btn-success mt-3 d-flex justify-content-center mx-5">Ajouter au panier</a>

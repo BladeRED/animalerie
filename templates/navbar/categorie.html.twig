@@ -99,7 +99,7 @@
                            class="img-fluid rounded mx-auto d-flex categorie">
                     </a>
                     <h5 class="text-center fw-bold my-3">{{ product.name }}</h5>
-                    <p class="text-center">{{product.price}}</p>
+                    <p class="text-center">{{ (product.price* 1.2)|round(2,'ceil') }}</p>
                     <a href="{{ path('panier_add', {'id':product.id })}}">
                       <button type="button" class="btn btn-primary btn pink mx-auto d-flex">Ajouter au
                         panier

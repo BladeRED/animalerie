@@ -111,7 +111,7 @@
                                     />
                                 </a>
                                 <h4 class="text-center fw-bold">{{ product.name }}</h4>
-                                <p class="text-center">{{ product.price }}€</p>
+                                <p class="text-center">{{ (product.price* 1.2)|round(2,'ceil') }}€</p>
                                 <a href="{{ path('panier_add', {'id':product.id })}}"
                                         class="
                         btn btn-primary btn-lg
